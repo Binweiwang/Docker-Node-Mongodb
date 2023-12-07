@@ -1,0 +1,16 @@
+{
+  "name": "fp-2daw-daw",
+  "version": "1.0.0",
+  "description": "Crea una web personal (o al menos un \"hola mundo\") y subela a tu repositorio de github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0"
+  }
+}
