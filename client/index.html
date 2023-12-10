@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tareas</title>
+    <style>
+        #listaTareas li {
+            margin: 5px 0;
+            list-style: none;
+        }
+
+        .eliminarBtn {
+            margin-left: 10px;
+            color: red;
+            cursor: pointer;
+        }
+
+        .completarBtn {
+            margin-left: 10px;
+            color: green;
+            cursor: pointer;
+        }
+
+        .tareaCompletada {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<h1>Mi Lista de Tareas</h1>
+<input id="nuevaTarea" placeholder="Agregar nueva tarea" type="text">
+<button onclick="agregarTarea()">Agregar</button>
+<ul id="listaTareas">
+    <!-- Las tareas se añadirán aquí -->
+</ul>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchTasks();
+    });
+
+    function agregarTarea() {
+        let titulo = document.getElementById("nuevaTarea").value;
+        if (titulo.trim() === "") {
+            alert("Por favor, escribe una tarea.");
+            return;
+        }
+        fetch('http://localhost:3000/tareas', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ titulo: titulo, description: 'Descripción de la tarea', completada: false })
+        })
+            .then(response => response.json())
+            .then(task => {
+                addTaskToDOM(task);
+                document.getElementById("nuevaTarea").value = "";
+            });
+    }
+
+    function fetchTasks() {
+        fetch('http://localhost:3000/tareas')
+            .then(response => response.json())
+            .then(tasks => {
+                tasks.forEach(task => addTaskToDOM(task));
+            });
+    }
+
+    function addTaskToDOM(task) {
+        let li = document.createElement("li");
+        li.textContent = task.titulo;
+        li.id = task._id;
+
+        let completarBtn = document.createElement("button");
+        completarBtn.textContent = "Completar";
+        completarBtn.className = "completarBtn";
+        completarBtn.onclick = function () {
+            toggleTaskCompletion(task._id, li);
+        };
+
+        let eliminarBtn = document.createElement("button");
+        eliminarBtn.textContent = "Eliminar";
+        eliminarBtn.className = "eliminarBtn";
+        eliminarBtn.onclick = function () {
+            deleteTask(task._id, li);
+        };
+
+        if (task.completada) {
+            li.classList.add("tareaCompletada");
+        }
+
+        li.appendChild(completarBtn);
+        li.appendChild(eliminarBtn);
+        document.getElementById("listaTareas").appendChild(li);
+    }
+
+    function deleteTask(taskId, taskElement) {
+        fetch('http://localhost:3000/tareas/' + taskId, { method: 'DELETE' })
+            .then(() => {
+                taskElement.remove();
+            });
+    }
+
+    function toggleTaskCompletion(taskId, taskElement) {
+        let isCompleted = taskElement.classList.contains("tareaCompletada");
+        fetch('http://localhost:3000/tareas/' + taskId, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ completada: !isCompleted })
+        })
+            .then(() => {
+                taskElement.classList.toggle("tareaCompletada");
+            });
+    }
+</script>
+</body>
+</html>
