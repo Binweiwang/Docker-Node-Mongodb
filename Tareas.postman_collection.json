@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "df6a359d-fc98-44ca-a1ce-1181e88619d5",
+		"name": "Tareas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21366890"
+	},
+	"item": [
+		{
+			"name": "Casos Incorretos",
+			"item": [
+				{
+					"name": "GetTareaByIdInvalid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tareas/6575f8d8921af4c37f5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tareas",
+								"6575f8d8921af4c37f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTareaByIdNotFound",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tareas/6575f8d8921af4c37f51651a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tareas",
+								"6575f8d8921af4c37f51651a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostTareaNotCompleted",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"titulo\": \"\",\r\n        \"description\": \"Esta es la tarea 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tareas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutTareaNotFound",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"titulo\": \"Tarea 1\",\r\n        \"description\": \"Put 1\",\r\n        \"completada\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tareas/6575f8d8921af4c37f51651a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tareas",
+								"6575f8d8921af4c37f51651a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutTareaIdInvalid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"titulo\": \"Tarea 1\",\r\n        \"description\": \"Put 1\",\r\n        \"completada\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tareas/6575f8d8921af4c37f5165",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tareas",
+								"6575f8d8921af4c37f5165"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteTareaIdInvalid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tareas/65760553277c245e645c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tareas",
+								"65760553277c245e645c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GetTareas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostTarea",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"titulo\": \"Tarea 1\",\r\n        \"description\": \"Esta es la tarea 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tareas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTareaById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tareas/65760553277c245e645c2f01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tareas",
+						"65760553277c245e645c2f01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutTarea",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"titulo\": \"Tarea 1\",\r\n        \"description\": \"Put 1\",\r\n        \"completada\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tareas/6575f8d8921af4c37f51651d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tareas",
+						"6575f8d8921af4c37f51651d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTarea",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tareas/65760553277c245e645c2f01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tareas",
+						"65760553277c245e645c2f01"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
